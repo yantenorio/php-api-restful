@@ -19,7 +19,12 @@ class CreateAddressTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('zipcode');
+            $table->bigInteger('client_id')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('address', function(Blueprint $table){
+            $table->foreign('client_id')->references('id')->on('client');
         });
     }
 
